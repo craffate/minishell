@@ -1,6 +1,11 @@
 NAME		=	minishell
 
-SRCS_FILES	=	main.c
+SRCS_FILES	=	main.c \
+				exec.c \
+				builtins.c \
+				builtins2.c \
+				utils.c \
+				error_handler.c
 
 LIBFT		=	libft.a
 
@@ -8,7 +13,7 @@ LIBFTPATH	=	./libft
 
 CC			=	gcc
 
-FLAGS		=	-Weverything
+FLAGS		=	-Wall -Wextra -Werror
 
 INCLUDES	=	-I./includes -I$(LIBFTPATH)/includes
 
@@ -21,7 +26,7 @@ $(NAME): $(LIBFT)
 	@$(CC) $(FLAGS) -o $(NAME) $(SRCS) $(INCLUDES) -L$(LIBFTPATH) -lft
 
 $(LIBFT):
-	make -C $(LIBFTPATH)
+	@make -C $(LIBFTPATH)
 
 clean:
 	@make clean -C $(LIBFTPATH)
