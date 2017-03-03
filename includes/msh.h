@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 11:37:41 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/03 11:45:55 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/03 15:57:14 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char			*clean_path(const char *path);
 int				isbuiltin(const char *s);
 void			exec_builtin(const char **argv, char ***envp);
 void			builtin_cd(const char **argv, char **envp);
-void			builtin_cd2(char **envp);
+void			builtin_cd_nopath(char **envp);
 void			builtin_echo(const char **argv);
 void			builtin_env(const char **envp);
 void			builtin_setenv(const char **argv, char ***envp);

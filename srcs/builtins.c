@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 09:04:43 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/03 14:47:48 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/03 15:57:15 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void		exec_builtin(const char **argv, char ***envp)
 {
 	if (!ft_strcmp(argv[0], "exit"))
 		exit(EXIT_SUCCESS);
-	else if (!ft_strcmp(argv[0], "cd"))
+	else if (!ft_strcmp(argv[0], "cd") && argv[1])
 		builtin_cd(argv, *envp);
+	else if (!ft_strcmp(argv[0], "cd") && !argv[1])
+		builtin_cd_nopath(*envp);
 	else if (!ft_strcmp(argv[0], "echo"))
 		builtin_echo(argv);
 	else if (!ft_strcmp(argv[0], "env"))
@@ -62,12 +64,34 @@ void		builtin_env(const char **envp)
 	}
 }
 
+void		builtin_cd_nopath(char **envp)
+{
+	int		i;
+	int		j;
+	char	*ptr;
+
+	i = find_env((const char **)envp, "PWD=");
+	j = find_env((const char **)envp, "OLDPWD=");
+	ptr = envp[i] + 4;
+	free(envp[j]);
+	envp[j] = ft_strjoin("OLDPWD=", ptr);
+	ptr = envp[find_env((const char **)envp, "HOME=")] + 5;
+	free(envp[i]);
+	envp[i] = ft_strjoin("PWD=", ptr);
+	chdir(ptr);
+}
+
 void		builtin_cd(const char **argv, char **envp)
 {
 	int		i;
 	int		j;
 	char	*ptr;
 
+	if (!argv[1])
+	{
+		builtin_cd_nopath(envp);
+		return ;
+	}
 	i = find_env((const char **)envp, "PWD=");
 	j = find_env((const char **)envp, "OLDPWD=");
 	ptr = envp[i] + 4;
