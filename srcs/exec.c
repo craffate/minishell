@@ -58,7 +58,10 @@ int			exec(char **argv, char ***envp)
 	child = fork();
 	if (child == 0)
 	{
-		execve(bin_path, argv, *envp);
+		if (*argv[0] == '/' || *argv[0] == '.')
+			execve(argv[0], argv, *envp);
+		else
+			execve(bin_path, argv, *envp);
 		error_handler(4);
 		exit(EXIT_FAILURE);
 	}
