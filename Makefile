@@ -30,7 +30,6 @@ $(LIBFT):
 
 clean:
 	@make clean -C $(LIBFTPATH)
-	@rm -f $(NAME)
 	@echo "[minishell folders cleaned]"
 
 fclean: clean
