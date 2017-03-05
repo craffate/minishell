@@ -6,11 +6,30 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 10:08:48 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/04 12:56:46 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/05 17:48:17 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh.h"
+
+void		builtin_echo(const char **argv)
+{
+	unsigned int	i;
+
+	while (*++argv)
+	{
+		i = 0;
+		while ((*argv)[i])
+		{
+			if ((*argv)[i] == '"')
+				i++;
+			write(1, &(*argv)[i], 1);
+			i++;
+		}
+		write(1, " ", 1);
+	}
+	write(1, "\n", 1);
+}
 
 static char	*builtin_setenv_setup(const char **argv)
 {
@@ -75,5 +94,18 @@ void		builtin_unsetenv(const char **argv, char ***envp)
 			i++;
 		}
 		(*envp)[i - 1] = NULL;
+	}
+}
+
+void		builtin_env(const char **envp)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (envp[i])
+	{
+		write(1, envp[i], ft_strlen(envp[i]));
+		write(1, "\n", 1);
+		i++;
 	}
 }

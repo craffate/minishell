@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 11:39:07 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/03 15:06:36 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/05 17:50:33 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,16 @@ static int	envp_shlvl(char *s)
 	return (ft_atoi(s) + 1);
 }
 
-static char **envp_setup(char **ep)
+static char	**envp_setup(char **ep)
 {
 	char			**envp;
-	char			*tmp;
+	char			*t;
 	unsigned int	i;
 	unsigned int	k;
 
 	i = 0;
 	k = 7;
-	tmp = NULL;
+	t = NULL;
 	while (ep[i])
 		i++;
 	if (!(envp = (char **)malloc(sizeof(char *) * (i + 1))))
@@ -59,12 +59,10 @@ static char **envp_setup(char **ep)
 	i = 0;
 	while (ep[i])
 	{
-		if (!ft_strncmp(ep[i], "SHLVL=", 6))
+		if (!ft_strncmp(ep[i], "SHLVL=", 6) && (t = ft_itoa(envp_shlvl(ep[i]))))
 		{
-			tmp = ft_itoa(envp_shlvl(ep[i]));
-			envp[i++] = ft_strjoin("SHLVL=", tmp);
-			free(tmp);
-			tmp = NULL;
+			envp[i++] = ft_strjoin("SHLVL=", t);
+			free(t);
 		}
 		envp[i] = ft_strdup(ep[i]);
 		i++;

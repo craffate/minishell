@@ -6,11 +6,19 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 15:29:40 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/03 14:47:47 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/05 18:11:46 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh.h"
+
+void	status_handler(int status)
+{
+	if (WIFSIGNALED(status))
+		ft_printf("Process killed by signed %d", WTERMSIG(status));
+	else if (WIFSTOPPED(status))
+		ft_printf("Process stopped by signed %d", WSTOPSIG(status));
+}
 
 void	error_handler(int error)
 {

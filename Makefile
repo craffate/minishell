@@ -5,7 +5,8 @@ SRCS_FILES	=	main.c \
 				builtins.c \
 				builtins2.c \
 				utils.c \
-				error_handler.c
+				utils2.c \
+				handlers.c
 
 LIBFT		=	libft.a
 

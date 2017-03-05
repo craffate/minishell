@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 11:37:41 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/04 12:57:25 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/05 17:55:17 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ void			error_handler(int error);
 int				path_check(const char *pwd, const char *f);
 int				abs_path(const char *path);
 unsigned int	path_scan(const char *path);
+void			status_handler(int status);
 
 #endif
