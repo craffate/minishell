@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 10:06:24 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/05 17:55:36 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/06 13:08:55 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static char	*find_binary(const char *bin, const char **path)
 
 	i = 0;
 	buf = NULL;
+	if (!path)
+		return (NULL);
 	while (path[i])
 	{
 		buf = join_path(path[i], bin);
@@ -69,14 +71,14 @@ int			exec(char **argv, char ***envp)
 		return (-1);
 	path = split_path((const char **)*envp);
 	bin_path = find_binary(argv[0], (const char **)path);
-	free(path);
+	path ? free_env(path) : 0;
 	if (isbuiltin(argv[0]))
-	{
 		exec_builtin((const char **)argv, envp);
-		return (0);
+	else
+	{
+		child = fork();
+		fork_exec(argv, envp, child, bin_path);
+		free_env(argv);
 	}
-	child = fork();
-	fork_exec(argv, envp, child, bin_path);
-	free_env(argv);
 	return (0);
 }

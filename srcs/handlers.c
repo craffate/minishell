@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 15:29:40 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/05 18:11:46 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/06 13:01:59 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	error_handler(int error)
 	error == 7 ? write(2, MSH_INVALID, 15) : 0;
 	error == 8 ? write(2, MSH_NOENV, 36) : 0;
 	error == 9 ? write(2, MSH_NOPATH, 23) : 0;
+	error == 10 ? write(2, MSH_NOPATH, 23) : 0;
 	if (error == 1 || error == 2)
 		exit(EXIT_FAILURE);
 	else

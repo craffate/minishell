@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 11:07:50 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/05 17:37:54 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/06 13:08:54 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,15 @@ char	**split_path(const char **envp)
 {
 	char			**path;
 	char			*buf;
-	unsigned int	i;
+	int				i;
 	unsigned int	k;
 	unsigned int	l;
 
-	i = 0;
 	k = 5;
 	l = 0;
-	while (ft_strncmp(envp[i], "PATH=", 5))
-		i++;
+	i = find_env(envp, "PATH=");
+	if (i == -1)
+		return (NULL);
 	buf = ft_strnew(ft_strlen(envp[i]) - 5);
 	while (envp[i][k])
 		buf[l++] = envp[i][k++];
