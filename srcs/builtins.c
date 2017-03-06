@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 09:04:43 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/06 10:55:23 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/06 14:45:41 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void			exec_builtin(const char **argv, char ***envp)
 		builtin_setenv(argv, envp);
 	else if (!ft_strcmp(argv[0], "unsetenv"))
 		builtin_unsetenv(argv, envp);
-	else
-		return ;
 }
 
 void			builtin_cd_prev(char **envp)

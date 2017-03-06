@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 10:06:24 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/06 13:08:55 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/06 14:49:54 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int			exec(char **argv, char ***envp)
 		return (-1);
 	path = split_path((const char **)*envp);
 	bin_path = find_binary(argv[0], (const char **)path);
-	path ? free_env(path) : 0;
 	if (isbuiltin(argv[0]))
 		exec_builtin((const char **)argv, envp);
 	else
@@ -80,5 +79,6 @@ int			exec(char **argv, char ***envp)
 		fork_exec(argv, envp, child, bin_path);
 		free_env(argv);
 	}
+	path ? free_env(path) : 0;
 	return (0);
 }

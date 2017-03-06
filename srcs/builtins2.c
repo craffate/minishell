@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 10:08:48 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/06 10:57:30 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/06 14:48:04 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,11 @@ void		builtin_setenv(const char **argv, char ***envp)
 	int				i;
 	char			*tmp;
 
-	if (!(*argv)[2])
+	if (!argv[1] || !argv[2])
+	{
 		error_handler(7);
+		return ;
+	}
 	i = find_env((const char **)*envp, argv[1]);
 	tmp = builtin_setenv_setup(argv);
 	if (i == -1)
@@ -76,8 +79,11 @@ void		builtin_unsetenv(const char **argv, char ***envp)
 	int				i;
 	unsigned int	j;
 
-	if (!(*argv)[2])
+	if (!argv[1])
+	{
 		error_handler(7);
+		return ;
+	}
 	i = find_env((const char **)*envp, argv[1]);
 	j = 0;
 	if (i == -1)
