@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 09:04:43 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/06 14:45:41 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/06 15:07:21 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void			exec_builtin(const char **argv, char ***envp)
 {
 	if (!ft_strcmp(argv[0], "exit"))
 		exit(EXIT_SUCCESS);
+	else if (!ft_strcmp(argv[0], "cd") && !argv[1])
+		builtin_cd_nopath(*envp);
 	else if (!ft_strcmp(argv[0], "cd") && !ft_strcmp(argv[1], "-"))
 		builtin_cd_prev(*envp);
 	else if (!ft_strcmp(argv[0], "cd") && argv[1])
 		builtin_cd(argv, *envp);
-	else if (!ft_strcmp(argv[0], "cd") && !argv[1])
-		builtin_cd_nopath(*envp);
 	else if (!ft_strcmp(argv[0], "echo"))
 		builtin_echo(argv);
 	else if (!ft_strcmp(argv[0], "env"))

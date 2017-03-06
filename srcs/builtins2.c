@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 10:08:48 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/06 14:48:04 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/06 15:05:52 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void		builtin_echo(const char **argv)
 		i = 0;
 		while ((*argv)[i])
 		{
-			if ((*argv)[i] == '"')
-				i++;
 			write(1, &(*argv)[i], 1);
 			i++;
 		}
