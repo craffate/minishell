@@ -118,23 +118,23 @@ FLAGS		=	-Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME): $(OBJS) $(GNL_OBJS) $(PF_OBJS)
-	@ar -rc $(NAME) $(OBJS) $(GNL_OBJS) $(PF_OBJS)
-	@ranlib $(NAME)
+	ar -rc $(NAME) $(OBJS) $(GNL_OBJS) $(PF_OBJS)
+	ranlib $(NAME)
 
 srcs/%.o: srcs/%.c
-	@$(CC) -o $@ -c $< $(FLAGS) -I$(INCS)
+	$(CC) -o $@ -c $< $(FLAGS) -I$(INCS)
 
 get_next_line/%.o: get_next_line/%.c
-	@$(CC) -o $@ -c $< $(FLAGS) -I$(INCS)
+	$(CC) -o $@ -c $< $(FLAGS) -I$(INCS)
 
 ft_printf/%.o: ft_printf/%.c
-	@$(CC) -o $@ -c $< $(FLAGS) -I$(INCS)
+	$(CC) -o $@ -c $< $(FLAGS) -I$(INCS)
 
 clean:
-	@rm -f $(OBJS) $(GNL_OBJS) $(PF_OBJS)
+	rm -f $(OBJS) $(GNL_OBJS) $(PF_OBJS)
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 

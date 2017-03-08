@@ -6,7 +6,7 @@
 /*   By: craffate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 04:37:49 by craffate          #+#    #+#             */
-/*   Updated: 2016/11/25 16:14:23 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/08 14:36:15 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static int	ft_save(char **s, char **tmp, char ***line)
 	{
 		free(*s);
 		*s = ft_strdup(*tmp + 1);
+		free(*tmp);
 		**line = ft_strnew(0);
 		return (1);
 	}
