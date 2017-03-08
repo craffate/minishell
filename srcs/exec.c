@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 10:06:24 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/08 13:38:38 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/08 14:07:34 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ int			exec(char **argv, char ***envp)
 		if (bin_path)
 			free(bin_path);
 	}
-	free_env(path);
+	path ? free_env(path) : 0;
 	return (0);
 }
