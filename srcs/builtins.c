@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 09:04:43 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/08 12:50:33 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/08 13:20:27 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,10 @@ void			builtin_cd(const char **argv, char **envp)
 	free(envp[j]);
 	envp[j] = ft_strjoin("OLDPWD=", ptr);
 	if (builtin_cd2(argv, &ptr))
+	{
+		free(ptr);
 		return ;
+	}
 	chdir(ptr);
 	free(ptr);
 	ptr = getcwd(NULL, MSH_BUFSIZE);
