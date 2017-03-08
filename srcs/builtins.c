@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 09:04:43 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/06 15:07:21 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/08 12:50:33 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ void			builtin_cd(const char **argv, char **envp)
 	chdir(ptr);
 	free(ptr);
 	ptr = getcwd(NULL, MSH_BUFSIZE);
+	free(envp[i]);
 	envp[i] = ft_strjoin("PWD=", ptr);
 	free(ptr);
 	ptr = NULL;

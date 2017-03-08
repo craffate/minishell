@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 11:39:07 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/06 14:51:11 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/08 12:49:11 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,24 +77,20 @@ static void	loop(char **envp)
 	char	**argv;
 	int		i;
 
-	buf = ft_strnew(0);
+	buf = NULL;
 	argv = NULL;
-	if (!buf)
-		error_handler(1);
 	while ((i = get_next_line(0, &buf)))
 	{
 		if (i == -1)
 			error_handler(2);
 		if (buf)
-		{
 			argv = split_input(buf);
-			free(buf);
-		}
+		free(buf);
 		argv ? exec(argv, &envp) : 0;
+		free_env(argv);
 		ft_printf("{green}msh{eoc} - {yellow}%s{eoc} $> ",
 		pwd_print((const char **)envp));
 	}
-	free_env(envp);
 }
 
 int			main(int ac, char **av, char **ep)
@@ -107,5 +103,6 @@ int			main(int ac, char **av, char **ep)
 	ft_printf("{green}msh{eoc} - {yellow}%s{eoc} $> ",
 	pwd_print((const char **)envp));
 	loop(envp);
+	free_env(envp);
 	return (0);
 }

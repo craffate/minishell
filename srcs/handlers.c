@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 15:29:40 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/06 14:39:57 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/08 12:40:27 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	error_handler(int error)
 	error == 2 ? write(2, MSH_IERROR, 23) : 0;
 	error == 3 ? write(2, MSH_FORKFAIL, 15) : 0;
 	error == 4 ? write(2, MSH_UNKNOWNCMD, 16) : 0;
-	error == 5 ? write(2, MSH_BINNOTFOUND, 22) : 0;
+	error == 5 ? write(2, MSH_BINNOTFOUND, 25) : 0;
 	error == 6 ? write(2, MSH_DENIED, 14) : 0;
 	error == 7 ? write(2, MSH_INVALID, 15) : 0;
 	error == 8 ? write(2, MSH_NOENV, 36) : 0;

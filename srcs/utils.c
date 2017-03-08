@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 11:07:50 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/06 13:08:54 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/08 10:15:18 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,5 @@ char	**split_path(const char **envp)
 
 char	**split_input(const char *buf)
 {
-	char	**s;
-
-	s = ft_strsplit(buf, ' ');
-	return (s);
+	return (ft_strsplit(buf, ' '));
 }
