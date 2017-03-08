@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 17:37:43 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/06 12:25:40 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/08 13:57:41 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,11 @@ char			*pwd_print(const char **envp)
 		ptr--;
 	}
 	return (ptr + 2);
+}
+
+void			builtin_cd_chdir(char **ptr)
+{
+	chdir(*ptr);
+	free(*ptr);
+	*ptr = getcwd(NULL, MSH_BUFSIZE);
 }

@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 10:06:24 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/08 12:49:16 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/08 13:38:38 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,26 @@
 
 static char	*find_binary(const char *bin, const char **path)
 {
-	unsigned int	i;
-	char			*buf;
-	char			*ret;
+	int		i;
+	char	*buf;
+	char	*ret;
 
-	i = 0;
+	i = -1;
 	buf = NULL;
-	ret = NULL;
 	if (!path)
 		return (NULL);
-	while (path[i])
+	while (path[++i])
 	{
 		buf = join_path(path[i], bin);
 		if (!access(buf, X_OK))
 			break ;
-		i++;
 		free(buf);
 		buf = NULL;
 	}
-	if (buf)
-	{
-		ret = ft_strdup(buf);
-		free(buf);
-	}
-	else
-	{
+	ret = buf ? ft_strdup(buf) : NULL;
+	buf ? free(buf) : 0;
+	if (!ret)
 		error_handler(5);
-		return (NULL);
-	}
 	return (ret);
 }
 
@@ -56,7 +48,6 @@ static void	fork_exec(char **argv, char ***envp, pid_t child, char *bin_path)
 			execve(argv[0], argv, *envp);
 		else
 			execve(bin_path, argv, *envp);
-		error_handler(4);
 		exit(EXIT_FAILURE);
 	}
 	else if (child > 0)
@@ -74,14 +65,18 @@ int			exec(char **argv, char ***envp)
 
 	if (!argv[0])
 		return (-1);
+	bin_path = NULL;
 	path = split_path((const char **)*envp);
 	if (isbuiltin(argv[0]))
 		exec_builtin((const char **)argv, envp);
-	else if ((bin_path = find_binary(argv[0], (const char **)path)))
+	else
 	{
+		if (!(*argv[0] == '/') && !(*argv[0] == '.'))
+			bin_path = find_binary(argv[0], (const char **)path);
 		child = fork();
 		fork_exec(argv, envp, child, bin_path);
-		free(bin_path);
+		if (bin_path)
+			free(bin_path);
 	}
 	free_env(path);
 	return (0);

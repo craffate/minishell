@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 09:04:43 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/08 13:20:27 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/08 13:57:27 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void			builtin_cd_nopath(char **envp)
 	chdir(ptr);
 }
 
+
 static int		builtin_cd2(const char **argv, char **ptr)
 {
 	if (*argv[1] != '/')
@@ -95,6 +96,7 @@ void			builtin_cd(const char **argv, char **envp)
 	int		i;
 	int		j;
 	char	*ptr;
+	char	*ptr2;
 
 	if (!argv[1])
 	{
@@ -104,18 +106,16 @@ void			builtin_cd(const char **argv, char **envp)
 	i = find_env((const char **)envp, "PWD=");
 	j = find_env((const char **)envp, "OLDPWD=");
 	ptr = envp[i] + 4;
-	free(envp[j]);
-	envp[j] = ft_strjoin("OLDPWD=", ptr);
+	ptr2 = ptr;
 	if (builtin_cd2(argv, &ptr))
 	{
 		free(ptr);
 		return ;
 	}
-	chdir(ptr);
-	free(ptr);
-	ptr = getcwd(NULL, MSH_BUFSIZE);
+	free(envp[j]);
+	envp[j] = ft_strjoin("OLDPWD=", ptr2);
+	builtin_cd_chdir(&ptr);
 	free(envp[i]);
 	envp[i] = ft_strjoin("PWD=", ptr);
 	free(ptr);
-	ptr = NULL;
 }
