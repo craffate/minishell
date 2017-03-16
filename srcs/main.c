@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 11:39:07 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/08 12:49:11 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/13 09:01:08 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,8 @@ static char	**envp_setup(char **ep)
 	char			**envp;
 	char			*t;
 	unsigned int	i;
-	unsigned int	k;
 
 	i = 0;
-	k = 7;
 	t = NULL;
 	while (ep[i])
 		i++;
