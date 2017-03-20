@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/15 10:22:19 by craffate          #+#    #+#             */
-/*   Updated: 2017/02/15 10:23:48 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/15 14:33:21 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/15 14:35:21 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_stackswap(t_stack *stack)
 {
-	unsigned int	i;
+	int		i;
 
 	if (stack->head < 2)
 		return ;

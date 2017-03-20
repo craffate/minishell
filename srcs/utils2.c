@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 17:37:43 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/08 13:57:41 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/20 16:17:39 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,27 @@ unsigned int	path_scan(const char *path)
 	return (i);
 }
 
-char			*pwd_print(const char **envp)
+char			*pwd_print(void)
 {
-	int				i;
-	unsigned int	j;
-	unsigned int	k;
+	char			buf[1024];
 	char			*ptr;
+	unsigned int	i;
+	unsigned int	j;
 
-	i = find_env(envp, "PWD=");
-	if (ft_strlen(envp[i]) == 5)
-		return ("/");
-	ptr = (char *)envp[i] + ft_strlen(envp[i]);
-	k = path_scan(envp[i] + 4);
-	j = k > 1 ? 0 : 1;
+	getcwd(buf, 1024);
+	if (!(ft_strcmp(buf, "/")))
+		return (ft_strdup("/"));
+	ptr = buf + ft_strlen(buf);
+	i = path_scan(buf);
+	j = i > 1 ? 0 : 1;
 	while (j != 2)
 	{
-		if (*ptr == '/')
-			j++;
-		ptr--;
+		if (*ptr == 47)
+			++j;
+		--ptr;
 	}
-	return (ptr + 2);
+	ptr = ft_strdup(ptr + 2);
+	return (ptr);
 }
 
 void			builtin_cd_chdir(char **ptr)

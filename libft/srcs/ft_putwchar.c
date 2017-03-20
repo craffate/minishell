@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/09 12:26:50 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/14 11:22:25 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/16 07:14:08 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/16 07:17:20 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putwchar(wchar_t c)
+void	ft_putwchar(const wchar_t c)
 {
 	if (c >= 0x10000)
 		ft_putchar(((c & 0x1c0000) >> 18) + 0xF0);

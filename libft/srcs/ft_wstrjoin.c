@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/11 17:37:37 by craffate          #+#    #+#             */
-/*   Updated: 2017/01/23 15:23:49 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/16 09:41:32 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/16 09:43:56 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 wchar_t	*ft_wstrjoin(const wchar_t *s1, const wchar_t *s2)
 {
-	size_t	i;
-	wchar_t	*s3;
+	unsigned int	i;
+	wchar_t			*s3;
 
 	if (!s1 || !s2)
 		return (NULL);
@@ -27,6 +27,6 @@ wchar_t	*ft_wstrjoin(const wchar_t *s1, const wchar_t *s2)
 		s3[i++] = *s1++;
 	while (*s2)
 		s3[i++] = *s2++;
-	s3[i] = '\0';
-	return (*&s3);
+	s3[i] = 0;
+	return (s3);
 }

@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/18 18:51:15 by craffate          #+#    #+#             */
-/*   Updated: 2017/02/18 18:58:04 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/15 14:19:33 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/15 14:42:24 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_stackisempty(t_stack stack)
+int		ft_stackisempty(const t_stack stack)
 {
 	return (!stack.head ? 1 : 0);
 }

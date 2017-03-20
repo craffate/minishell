@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 11:39:07 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/13 09:01:08 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/20 16:19:10 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ static void	loop(char **envp)
 {
 	char	*buf;
 	char	**argv;
+	char	*pwd;
 	int		i;
 
 	buf = NULL;
@@ -83,23 +84,27 @@ static void	loop(char **envp)
 			error_handler(2);
 		if (buf)
 			argv = split_input(buf);
-		free(buf);
+		if (buf)
+			free(buf);
 		argv ? exec(argv, &envp) : 0;
-		free_env(argv);
-		ft_printf("{green}msh{eoc} - {yellow}%s{eoc} $> ",
-		pwd_print((const char **)envp));
+		if (argv)
+			free_env(argv);
+		pwd = pwd_print();
+		ft_printf("{green}msh{eoc} - {yellow}%s{eoc} $> ", pwd);
+		free(pwd);
 	}
 }
 
 int			main(int ac, char **av, char **ep)
 {
 	char	**envp;
+	char	*pwd;
 
 	(void)ac;
 	(void)av;
 	envp = envp_setup(ep);
-	ft_printf("{green}msh{eoc} - {yellow}%s{eoc} $> ",
-	pwd_print((const char **)envp));
+	pwd = pwd_print();
+	ft_printf("{green}msh{eoc} - {yellow}%s{eoc} $> ", pwd);
 	loop(envp);
 	free_env(envp);
 	return (0);

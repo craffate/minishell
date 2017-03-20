@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 11:37:41 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/08 13:57:40 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/20 16:17:36 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void			builtin_unsetenv(const char **argv, char ***envp);
 int				find_env(const char **envp, const char *env);
 void			free_env(char **envp);
 void			envp_add(const char *var, char ***envp);
-char			*pwd_print(const char **envp);
+char			*pwd_print(void);
 void			error_handler(int error);
 int				path_check(const char *pwd, const char *f);
 int				abs_path(const char *path);

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/15 18:04:13 by craffate          #+#    #+#             */
-/*   Updated: 2017/02/15 18:05:32 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/15 14:31:14 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/15 14:41:22 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_stackrrotate(t_stack *stack)
 	if (stack->head < 2)
 		return ;
 	i = stack->data[0];
-	j = -1;
+	j = -1u;
 	while (++j < stack->head - 1)
 		stack->data[j] = stack->data[j + 1];
 	stack->data[stack->head - 1] = i;

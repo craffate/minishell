@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/15 10:19:19 by craffate          #+#    #+#             */
-/*   Updated: 2017/02/15 10:32:23 by craffate         ###   ########.fr       */
+/*   Created: 2017/03/15 14:27:50 by craffate          #+#    #+#             */
+/*   Updated: 2017/03/15 14:28:50 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_stackpush(t_stack *stack, int data)
 {
-	if (!(stack->head < stack->size))
+	if (!(stack->head < stack->si))
 		return ;
 	stack->data[stack->head++] = data;
 }

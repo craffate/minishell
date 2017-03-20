@@ -6,14 +6,14 @@
 /*   By: craffate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 04:37:49 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/08 14:36:15 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/17 14:11:27 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "libft.h"
 
-static int	ft_save(char **s, char **tmp, char ***line)
+static int	save(char **s, char **tmp, char ***line)
 {
 	*tmp = ft_strdup(*s);
 	if (**tmp == '\n')
@@ -36,7 +36,7 @@ static int	ft_save(char **s, char **tmp, char ***line)
 int			get_next_line(const int fd, char **line)
 {
 	char			buf[BUFF_SIZE + 1];
-	int				ret;
+	ssize_t			st;
 	static char		*s;
 	char			*tmp;
 
@@ -44,11 +44,11 @@ int			get_next_line(const int fd, char **line)
 		return (-1);
 	if (!s)
 		s = ft_strnew(0);
-	while ((ret = read(fd, buf, BUFF_SIZE)))
+	while ((st = read(fd, buf, BUFF_SIZE)))
 	{
-		if (ret == -1)
+		if (st == -1)
 			return (-1);
-		buf[ret] = '\0';
+		buf[st] = '\0';
 		tmp = ft_strjoin(s, buf);
 		free(s);
 		s = ft_strdup(tmp);
@@ -56,7 +56,7 @@ int			get_next_line(const int fd, char **line)
 		if (ft_strchr(s, '\n'))
 			break ;
 	}
-	if (ft_save(&s, &tmp, &line))
+	if (save(&s, &tmp, &line))
 		return (1);
 	return (!!(*tmp));
 }
