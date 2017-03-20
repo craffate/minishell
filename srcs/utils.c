@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 11:07:50 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/18 14:39:59 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/20 16:29:24 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int		find_env(const char **envp, const char *env)
 
 int		isbuiltin(const char *s)
 {
-	return (!ft_strncmp(s, "exit", 4) || !ft_strncmp(s, "echo", 4) ||
-			!ft_strncmp(s, "cd", 2) || !ft_strncmp(s, "setenv", 6) ||
-			!ft_strncmp(s, "unsetenv", 8) || !ft_strncmp(s, "env", 3) ? 1 : 0);
+	return (!ft_strcmp(s, "exit") || !ft_strcmp(s, "echo") ||
+			!ft_strcmp(s, "cd") || !ft_strcmp(s, "setenv") ||
+			!ft_strcmp(s, "unsetenv") || !ft_strcmp(s, "env") ? 1 : 0);
 }
 
 char	*join_path(const char *s1, const char *s2)

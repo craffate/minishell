@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 11:37:41 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/20 16:17:36 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/20 16:27:32 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define MSH_INVALID		"Invalid input\n"
 # define MSH_NOENV			"Environement variable doesn't exist\n"
 # define MSH_NOPATH			"Path couldn't be found\n"
+# define MSH_NOHOME			"Environement variable HOME isn't set\n"
 
 char			*read_input(void);
 int				exec(char **argv, char ***envp);
@@ -47,7 +48,7 @@ int				find_env(const char **envp, const char *env);
 void			free_env(char **envp);
 void			envp_add(const char *var, char ***envp);
 char			*pwd_print(void);
-void			error_handler(int error);
+void			error_handler(const int error);
 int				path_check(const char *pwd, const char *f);
 int				abs_path(const char *path);
 unsigned int	path_scan(const char *path);

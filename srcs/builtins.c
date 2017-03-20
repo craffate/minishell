@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 09:04:43 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/16 07:06:31 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/20 16:27:56 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@ void			builtin_cd_nopath(char **envp)
 	int		j;
 	char	*ptr;
 
+	if (find_env((const char **)envp, "HOME=") == -1)
+	{
+		error_handler(10);
+		return ;
+	}
 	i = find_env((const char **)envp, "PWD=");
 	j = find_env((const char **)envp, "OLDPWD=");
 	ptr = envp[i] + 4;
