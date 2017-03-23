@@ -6,13 +6,14 @@ SRCS_FILES	=	main.c \
 				builtins2.c \
 				utils.c \
 				utils2.c \
-				handlers.c
+				handlers.c \
+				utils3.c
 
 LIBFT		=	libft.a
 
 LIBFTPATH	=	./libft
 
-CC			=	gcc
+CC			=	clang
 
 FLAGS		=	-Wall -Wextra -Werror
 

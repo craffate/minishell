@@ -6,11 +6,20 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/02 15:29:40 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/20 16:31:16 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/23 17:57:07 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "msh.h"
+
+void	signals(void)
+{
+	signal(SIGINT, SIG_IGN);
+	signal(SIGHUP, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGTSTP, SIG_IGN);
+	signal(SIGKILL, SIG_IGN);
+}
 
 void	status_handler(int status)
 {
@@ -32,6 +41,8 @@ void	error_handler(const int error)
 	error == 8 ? write(2, MSH_NOENV, ft_strlen(MSH_NOENV)) : 0;
 	error == 9 ? write(2, MSH_NOPATH, ft_strlen(MSH_NOPATH)) : 0;
 	error == 10 ? write(2, MSH_NOHOME, ft_strlen(MSH_NOHOME)) : 0;
+	error == 11 ? write(2, MSH_NOPWD, ft_strlen(MSH_NOPWD)) : 0;
+	error == 12 ? write(2, MSH_NOOPWD, ft_strlen(MSH_NOOPWD)) : 0;
 	if (error == 1)
 		exit(EXIT_FAILURE);
 	else

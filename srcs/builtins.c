@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 09:04:43 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/20 16:27:56 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/23 18:24:17 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ void			builtin_cd_prev(char **envp)
 
 	i = find_env((const char **)envp, "PWD=");
 	j = find_env((const char **)envp, "OLDPWD=");
+	if (cd_checker(i, j, 0))
+		return ;
+	if (cd_pchecker(envp[i] + 4) || cd_pchecker(envp[j] + 7))
+		return ;
 	ptr = ft_strdup(envp[i] + 4);
 	ptr2 = ft_strdup(envp[j] + 7);
 	free(envp[j]);
@@ -60,13 +64,12 @@ void			builtin_cd_nopath(char **envp)
 	int		j;
 	char	*ptr;
 
-	if (find_env((const char **)envp, "HOME=") == -1)
-	{
-		error_handler(10);
-		return ;
-	}
 	i = find_env((const char **)envp, "PWD=");
 	j = find_env((const char **)envp, "OLDPWD=");
+	if (cd_checker(i, j, find_env((const char **)envp, "HOME=")))
+		return ;
+	if (cd_pchecker(envp[find_env((const char **)envp, "HOME=")] + 5))
+		return ;
 	ptr = envp[i] + 4;
 	free(envp[j]);
 	envp[j] = ft_strjoin("OLDPWD=", ptr);
@@ -82,16 +85,8 @@ static int		builtin_cd2(const char **argv, char **ptr)
 		*ptr = join_path(*ptr, argv[1]);
 	else
 		*ptr = ft_strdup(argv[1]);
-	if (access(*ptr, F_OK))
-	{
-		error_handler(9);
+	if (cd_pchecker(*ptr))
 		return (-1);
-	}
-	if (access(*ptr, R_OK))
-	{
-		error_handler(6);
-		return (-1);
-	}
 	return (0);
 }
 
@@ -102,13 +97,12 @@ void			builtin_cd(const char **argv, char **envp)
 	char	*ptr;
 	char	*ptr2;
 
-	if (!argv[1])
-	{
-		builtin_cd_nopath(envp);
-		return ;
-	}
 	i = find_env((const char **)envp, "PWD=");
 	j = find_env((const char **)envp, "OLDPWD=");
+	if (cd_checker(i, j, 0))
+		return ;
+	if (cd_pchecker(envp[i] + 4) || cd_pchecker(envp[j] + 7))
+		return ;
 	ptr = envp[i] + 4;
 	ptr2 = ptr;
 	if (builtin_cd2(argv, &ptr))

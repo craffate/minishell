@@ -6,7 +6,7 @@
 /*   By: craffate <craffate@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 17:37:43 by craffate          #+#    #+#             */
-/*   Updated: 2017/03/20 16:17:39 by craffate         ###   ########.fr       */
+/*   Updated: 2017/03/23 18:04:15 by craffate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,25 @@ void			builtin_cd_chdir(char **ptr)
 	chdir(*ptr);
 	free(*ptr);
 	*ptr = getcwd(NULL, MSH_BUFSIZE);
+}
+
+int				cd_checker(const unsigned int i, const unsigned int j,
+				const unsigned int k)
+{
+	if (i == -1u)
+	{
+		error_handler(11);
+		return (-1);
+	}
+	if (j == -1u)
+	{
+		error_handler(12);
+		return (-1);
+	}
+	if (k == -1u)
+	{
+		error_handler(10);
+		return (-1);
+	}
+	return (0);
 }
